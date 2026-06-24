@@ -1,5 +1,6 @@
 package com.vinicius.taskmanager.service;
 
+import com.vinicius.taskmanager.exception.ResourceNotFoundException;
 import com.vinicius.taskmanager.model.Task;
 import com.vinicius.taskmanager.model.TaskStatus;
 import com.vinicius.taskmanager.repository.TaskRepository;
@@ -24,7 +25,7 @@ public class TaskService {
 
     public Task findById(Long id) {
         return taskRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Task não encontrada com id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Task não encontrada com id: " + id));
     }
 
     public List<Task> findByStatus(TaskStatus status) {
